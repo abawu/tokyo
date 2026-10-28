@@ -88,8 +88,13 @@
     </section>
 
     <div class="shell menu-nav" id="menu" aria-label="Menu sections">
-      <a href="#breakfast">Breakfast</a><a href="#lunch">Lunch</a><a href="#dinner">Dinner</a><a href="#drinks">Drinks</a>
+      <a href="#all">All</a><a href="#breakfast">Breakfast</a><a href="#lunch">Lunch</a><a href="#dinner">Dinner</a><a href="#drinks">Drinks</a>
     </div>
+
+    <section class="shell section" id="all">
+      <div class="section-heading"><h2>All menu</h2><div class="section-meta">Everything together · 00</div></div>
+      <div class="menu-grid" id="all-menu"></div>
+    </section>
 
     <section class="shell section" id="breakfast">
       <div class="section-heading"><h2>Breakfast</h2><div class="section-meta">Start slow · 01</div></div>
@@ -180,5 +185,15 @@
   </main>
 
   <footer class="shell footer"><div><strong>Tokyo 1964</strong><br>Ethiopian cultural kitchen · Hawassa.</div><div>Menu prices and content can be updated centrally.<br>Thank you for dining with us.</div></footer>
+  <script>
+    const allMenu = document.querySelector('#all-menu');
+    const allItems = document.querySelectorAll('#breakfast .item, #lunch .item, #dinner .item, #drinks .item');
+    allItems.forEach((item, index) => {
+      const copy = item.cloneNode(true);
+      const number = copy.querySelector('.item-number');
+      if (number) number.textContent = String(index + 1).padStart(2, '0');
+      allMenu.appendChild(copy);
+    });
+  </script>
 </body>
 </html>
